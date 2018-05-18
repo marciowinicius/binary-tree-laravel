@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 
 class BinaryService
 {
+    protected $points_multiplier = 500;
     /**
      * Validator de category
      * @param $data
@@ -46,18 +47,19 @@ class BinaryService
         $user = new User($data);
         $user->save();
 
-        if (!$users_root_nodes->count() == 2) {
+        if (!($users_root_nodes->count() == 2)) {
             $user->parent_id = $parent_id;
             $user->save();
         }
     }
 
     /**
-     * @param int $points
+     * @param $points
      * @return string
      */
-    public static function getRankSeller(int $points)
+    public static function getRankSeller($points)
     {
+        $points = intval($points);
         switch ($points) {
             case $points == 0:
                 return 'Vendedor';
@@ -83,15 +85,25 @@ class BinaryService
     public function getNodesPoints($user_id)
     {
         $first_node = User::whereParentId($user_id)->first();
-        $second_node = User::whereParentId($user_id)->latest();
+        $second_node = User::whereParentId($user_id)->latest()->first();
+//        dd(intval($first_node->getDescendantCount()) * 500);
+        if (!is_null($first_node)) {
+            if (!is_null($second_node)) {
+                if ($first_node->id == $second_node->id) {
+                    return 0;
+                } else {
+                    $first_node_points =  $this->points_multiplier * (intval($first_node->getDescendantCount()) + 1);
+                    $second_node_points =  $this->points_multiplier * (intval($second_node->getDescendantCount()) + 1);
 
-        if (!is_null($first_node) || !is_null($second_node)) {
-            if ($first_node['id'] == $second_node['id']) { // só possui uma perna
-                return 1; // como so tem uma perna retorna 0 pq a outra perna é o menor nivel
+                    $points = $first_node_points >= $second_node_points ? $second_node_points : $first_node_points;
+
+                    return $points;
+                }
             } else {
-                return 5;
+                return 0;
             }
+        } else {
+            return 0;
         }
-        return 0;
     }
 }
