@@ -1,0 +1,123 @@
+.btn-float-list:hover{
+    background-color: #4594D1;
+}
+
+.btn-list-default:hover{
+    background-color: #1D3E92;
+}
+
+.btn-list-default:hover i{
+    color: #FFFFFF;
+}
+
+.btn-list-default{
+    background: none;
+}
+
+.btn-list-default i{
+    color: #333333;
+}
+
+.p-title-page{
+    margin-left: 11px;
+}
+.nav-wrapper{
+    margin-left: -14px;
+}
+
+.title-page-breadcrumb{
+    color: #302e2e;
+    font-size: 20px;
+}
+
+.pulse-button {
+  box-shadow: 0 0 0 0 rgb(69, 148, 209);
+  animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+.pulse-button:hover
+{
+    -webkit-animation: none;-moz-animation: none;-ms-animation: none;animation: none;
+}
+
+@keyframes pulse {to {box-shadow: 0 0 0 15px rgba(29, 62, 146, 0);}}
+
+.message-error {
+    padding: 15px;
+    background-color: rgba(244, 67, 54, 0.7); /* Vermelho */
+    color: white;
+    margin-bottom: 15px;
+}
+
+.message-success {
+    padding: 15px;
+    background-color: rgba(34, 139, 34, 0.7); /* Verde */
+    color: white;
+    margin-bottom: 15px;
+}
+
+.message-info {
+    padding: 15px;
+    background-color: rgba(33, 150, 243, 0.7); /* Azul */
+    color: white;
+    margin-bottom: 15px;
+}
+
+.message-warning {
+    padding: 15px;
+    background-color: rgba(255, 169, 43, 0.7); /* Laranja */
+    color: white;
+    margin-bottom: 15px;
+}
+
+.p-message-alert{
+    text-align: center;
+}
+
+.icon-message-alert {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.card-append {
+  background: rgba(241, 241, 241, 0.05);
+  border-radius: 2px;
+  display: inline-block;
+  height: 300px;
+  margin: 1rem;
+  position: relative;
+}
+
+.card-append-categories {
+    background: rgba(241, 241, 241, 0.05);
+    border-radius: 2px;
+    display: inline-block;
+    height: 135px;
+    margin: 1rem;
+    position: relative;
+}
+
+.card-append-one {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.card-append-one:hover {
+    box-shadow: 0 14px 28px rgba(29, 62, 146, 0.20), 0 10px 10px rgba(29, 62, 146, 0.15);
+}
+
+.btn-append-remove{
+    background: #37A0F4;
+}
+.responsive-table th{
+    text-align: left;
+}
+.responsive-table .column-action{
+    text-align: center;
+}

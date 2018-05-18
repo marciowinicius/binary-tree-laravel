@@ -1,0 +1,41 @@
+ <style>
+    div #breadcrumbs {
+      position: 10px;
+    }
+    div #breadcrumbs ul {
+      display: inline-flex;
+      padding-left: 25px;
+      /*color: #F4F4F4;*/
+    }
+    div #breadcrumbs ul a {
+      color: #F4F4F4;
+    }
+    div #breadcrumbs ul span {
+      background-color: none;
+      color: #F4F4F4;
+    }
+    div #format {
+      padding-top: 20px;
+    }
+
+    .btn-list{
+      background: none;
+    }
+
+    #icom-list{
+    color: rgba(0, 0, 0, 0.7);
+    }
+
+    #table-custom{
+      padding-top: 50px;
+    }
+
+    #title-breadcumbs
+    {
+      padding-left: 21px;
+      font-size: 20px;
+      color : #FFFFFF;
+    }
+
+
+    </style>
