@@ -41,11 +41,14 @@ class BinaryService
      */
     public function storeNodeUser($data, $parent_id)
     {
-        $user_root = User::find($parent_id);
+        $users_root_nodes = User::where(['parent_id' => $parent_id])->get();
+
         $user = new User($data);
         $user->save();
 
-        $user->parent_id = $user_root->id;
-        $user->save();
+        if (!$users_root_nodes->count() == 2) {
+            $user->parent_id = $parent_id;
+            $user->save();
+        }
     }
 }
