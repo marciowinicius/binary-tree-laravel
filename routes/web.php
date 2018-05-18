@@ -18,3 +18,5 @@ Route::get('/', function () {
 
 
 Route::post('/add', 'BinaryController@store')->name('storeSeller');
+Route::get('/binary-datatable', 'BinaryController@sellersDatatable')->name('binaryDatatable');
+Route::get('/binary', 'BinaryController@index')->name('binaryIndex');

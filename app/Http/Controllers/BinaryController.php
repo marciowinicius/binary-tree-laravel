@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Services\BinaryService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Yajra\DataTables\Facades\DataTables;
 
 class BinaryController extends Controller
 {
@@ -20,6 +23,17 @@ class BinaryController extends Controller
     public function __construct(BinaryService $binaryService)
     {
         $this->binaryService = $binaryService;
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \DaveJamesMiller\Breadcrumbs\Facades\DuplicateBreadcrumbException
+     */
+    public function index()
+    {
+//        $user = User::find(1);
+//        dd($user->getDescendantCount());
+        return view('binary.index');
     }
 
     /**
@@ -45,5 +59,24 @@ class BinaryController extends Controller
         }
 
         return view('binary.added');
+    }
+
+    /**
+     * @return mixed
+     * @throws \Exception
+     */
+    public function sellersDatatable()
+    {
+        $users = DB::table('users')->select(['id', 'name', 'email', 'parent_id']);
+
+        return DataTables::of($users)
+            ->addColumn('points', function ($user) {
+                return $this->binaryService->getNodesPoints($user->id);
+            })
+            ->addColumn('nivel', function ($user) {
+                $points = $this->binaryService->getNodesPoints($user->id);
+                return BinaryService::getRankSeller($points);
+            })
+            ->make(true);
     }
 }

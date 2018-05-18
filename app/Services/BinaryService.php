@@ -51,4 +51,47 @@ class BinaryService
             $user->save();
         }
     }
+
+    /**
+     * @param int $points
+     * @return string
+     */
+    public static function getRankSeller(int $points)
+    {
+        switch ($points) {
+            case $points == 0:
+                return 'Vendedor';
+
+            case $points >= 1 && $points <= 500:
+                return 'Bronze';
+
+            case $points >= 501 && $points <= 1000:
+                return 'Prata';
+
+            case $points >= 1001 && $points <= 2000:
+                return 'Ouro';
+
+            case $points >= 2001 :
+                return 'Diamante';
+        }
+    }
+
+    /**
+     * @param $user_id
+     * @return int
+     */
+    public function getNodesPoints($user_id)
+    {
+        $first_node = User::whereParentId($user_id)->first();
+        $second_node = User::whereParentId($user_id)->latest();
+
+        if (!is_null($first_node) || !is_null($second_node)) {
+            if ($first_node['id'] == $second_node['id']) { // só possui uma perna
+                return 1; // como so tem uma perna retorna 0 pq a outra perna é o menor nivel
+            } else {
+                return 5;
+            }
+        }
+        return 0;
+    }
 }
